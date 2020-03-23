@@ -1,5 +1,5 @@
 const cosmos = require('@azure/cosmos');
-require('dotenv').config({ path: __dirname + '/.env' });
+require('dotenv').config({path: __dirname + '/.env'});
 
 const endpoint = process.env.DB_END_POINT;
 const masterKey = process.env.DB_KEY;
@@ -13,7 +13,7 @@ module.exports = async function (context) {
     var hourago = new Date(new Date().getTime() - (1000 * 60 * 60)).getTime() / 1000;
 
     const querySpec = {
-        query: `SELECT c.temperature, c.humidity FROM c WHERE c._ts > ${hourago}`
+        query: `SELECT c.site, c.hub, c.deviceid, c.temperature, c.humidity FROM c WHERE c._ts > ${hourago}`
     };
     context.log("querySpec", querySpec);
     const options = {
